@@ -4,14 +4,14 @@
 using namespace std;
 
 int main(){
-  cout << "lol\n";
-  // Pixel a;
-  //Image img(20,20);
-  // ofstream fout;
-  // fout.open("myimg.ppm");
-  // if (!fout){ cerr << "No fout\n";
-  //   return -1;}
-  // img.writeppm(fout);
-  // fout.close();
+  ifstream fin;ofstream fout;
+  fin.open("Lenna.ppm");
+  fout.open("mypic.ppm");
+  if (!fin || !fout){ cerr << "No fin\n";
+    return -1;}
+  Image img(fin);
+  img.gray();
+  img.writeppm(fout);
+  fin.close();fout.close();
  return 0;
 }

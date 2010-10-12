@@ -13,14 +13,20 @@ Image::Image(int width, int height) {
 }
 
 Image::Image(std::istream &fin){
-  Pixel a;
   data=0; readppm(fin);
 }
 
 Image::~Image(){ 
   delete[] data;
 }
-
+void Image::gray(){
+  int npixels=width*height,i;
+  i=npixels;
+  while(i){
+    data[i].gray();
+    i--;}
+    
+}
 int Image::gwidth() const{return width;}
 int Image::gheight() const{return height;}
 int Image::index(int row, int col) const{
@@ -46,12 +52,12 @@ bool Image::readppm (std::istream &fin){
 }
 
 void Image::writeppm (std::ostream &fout) const{
-  fout << "P3" << endl << width << '\n'
+  fout << "P3" << endl << width << ' '
        << height << '\n' << "255" << '\n';
   int npixels = width*height;
   for (int i=0; i<npixels; i++)
-    fout << (int)data[i].r << (int)data[i].g 
-	 << (int)data[i].b << endl;
+    fout << (int)data[i].r << ' ' << (int)data[i].g 
+	 << ' ' << (int)data[i].b << endl;
 }
 
 

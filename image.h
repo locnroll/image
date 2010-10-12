@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include "pixel.h"
-using namespace std;
+
 
 class Image{
   Pixel *data;
@@ -17,8 +17,9 @@ class Image{
   int gheight() const;
   int index(int row, int col) const;
   Pixel& operator()(int row, int col);
-  bool readppm (istream &fin);
-  void writeppm (ostream &fout) const;
+  bool readppm (std::istream &fin);
+  void writeppm (std::ostream &fout) const;
+  void gray();
 };
 
 #endif
