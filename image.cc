@@ -4,26 +4,25 @@
 
 using namespace std;
 
-Image::Image(){
-  data=0; width=0; height=0;
-}
+Image::Image(){data=0; width=0; height=0;}
 Image::Image(int width, int height) {
   this->width=width; this->height=height;
   data=new Pixel[width*height];
 }
-
 Image::Image(std::istream &fin){
   data=0; readppm(fin);
 }
-
+//Image::Image(const Image& pic){
+  
+//}
 Image::~Image(){ 
   delete[] data;
 }
-void Image::gray(){
+void Image::grey(){
   int npixels=width*height,i;
   i=npixels;
   while(i){
-    data[i].gray();
+    data[i].grey();
     i--;}
     
 }
@@ -31,8 +30,18 @@ int Image::gwidth() const{return width;}
 int Image::gheight() const{return height;}
 int Image::index(int row, int col) const{
   return row*width+col;}
+
 Pixel& Image::operator()(int row, int col){
   return data[index(row,col)];
+}
+bool Image::operator== (const Image& pic){
+  if(this->width!=pic.width || this->height!=pic.height)
+    return false;
+  else{
+    for(int i=0;i<this->width*this->height;i++)
+      if(this->data[i]!=pic.data[i])
+	return false;
+    return true;}
 }
 bool Image::readppm (std::istream &fin){
   //Cannot use comments on ppm file
@@ -59,5 +68,3 @@ void Image::writeppm (std::ostream &fout) const{
     fout << (int)data[i].r << ' ' << (int)data[i].g 
 	 << ' ' << (int)data[i].b << endl;
 }
-
-

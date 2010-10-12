@@ -17,9 +17,10 @@ class Image{
   int gheight() const;
   int index(int row, int col) const;
   Pixel& operator()(int row, int col);
+  bool operator== (const Image& pic);
   bool readppm (std::istream &fin);
   void writeppm (std::ostream &fout) const;
-  void gray();
+  void grey();
 };
 
 #endif

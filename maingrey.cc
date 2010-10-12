@@ -10,7 +10,7 @@ int main(){
   if (!fin || !fout){ cerr << "No fin\n";
     return -1;}
   Image img(fin);
-  img.gray();
+  img.grey();
   img.writeppm(fout);
   fin.close();fout.close();
  return 0;
