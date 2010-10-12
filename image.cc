@@ -1,8 +1,7 @@
 #include <iostream>
 #include "image.h"
 #include <cstring> //compare
-#include <iomanip> //for setw
-#include <cstdlib> //strtol
+
 using namespace std;
 
 Image::Image(){
