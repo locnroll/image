@@ -7,12 +7,13 @@ using namespace std;
 Image::Image(){
   data=0; width=0; height=0;
 }
-Image::Image(int width, int height){
+Image::Image(int width, int height) {
   this->width=width; this->height=height;
   data=new Pixel[width*height];
 }
 
 Image::Image(std::istream &fin){
+  Pixel a;
   data=0; readppm(fin);
 }
 
@@ -50,7 +51,7 @@ void Image::writeppm (std::ostream &fout) const{
   int npixels = width*height;
   for (int i=0; i<npixels; i++)
     fout << (int)data[i].r << (int)data[i].g 
-	 << (int)data[i].r << endl;
+	 << (int)data[i].b << endl;
 }
 
 
